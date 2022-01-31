@@ -8,10 +8,7 @@ class HomeController extends Controller
 {
     public function show()
     {
-        $response = "<div> 
-                        <span> i'm not creative </span> 
-                     </div>";
-
-        return $response;
+        $news = \DB::select('SELECT * FROM news');
+        return view('home', ['news' => $news]);
     }
 }
