@@ -21,3 +21,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
 Route::get('/auth', [App\Http\Controllers\AuthController::class, 'show']);
 Route::get('/category', [App\Http\Controllers\NewsCategoryController::class, 'show']);
 Route::get('/news', [App\Http\Controllers\TargetNewsController::class, 'show']);
+
+//Route::resource('category', \App\Http\Controllers\CategoryController::class);
+
+Route::group([
+        'prefix' => '/admin/category',
+        'as' => 'admin::category::'
+    ], function() {
+        
+        Route::post('create', [App\Http\Controllers\CategoryController::class, 'create'])
+            ->name('create');
+
+        Route::get('show', [App\Http\Controllers\CategoryController::class, 'show'])
+            ->name('show');
+
+        Route::get('update', [CategoryController::class, 'update'])
+            ->name('update');
+
+        Route::get('delete', [CategoryController::class, 'delete'])
+            ->name('delete');
+});
