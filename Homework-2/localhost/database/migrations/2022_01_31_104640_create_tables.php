@@ -13,11 +13,18 @@ class CreateTables extends Migration
      */
     public function up()
     {
+
+        \DB::statement(
+            'DROP TABLE IF EXISTS news, categories, news_status, sourses;'
+        );
+
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
             $table->string('title', 255);
             $table->string('content', 255);
+            $table->timestamps();
+            
         });
 
         Schema::create('categories', function (Blueprint $table) {
@@ -36,10 +43,16 @@ class CreateTables extends Migration
         });
 
         \DB::statement(
-            'INSERT INTO news VALUES 
-                (1, 1, Some, qwertyuiop),
-                (2, 2, Some2, asdfghjkl),
-                (3, 1, Some3, zxcvbnm)'
+            'INSERT INTO news (id, category_id, title, content) VALUES 
+                (1, 1, "Some", "qwertyuiop"),
+                (2, 2, "Some2", "asdfghjkl"),
+                (3, 1, "Some3", "zxcvbnm")'
+        );
+
+        \DB::statement(
+            'INSERT INTO categories (id, category_name) VALUES 
+                (1, "Sport"),
+                (2, "Politic")'
         );
     }
 
@@ -50,6 +63,6 @@ class CreateTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('news');
     }
 }
