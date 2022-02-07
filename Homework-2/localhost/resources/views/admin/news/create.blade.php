@@ -7,14 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+    
     <div>
-        {!! Form::open([ 'route' => 'admin::news::create']) !!}
+        {!! Form::open([ 'route' => 'admin::news::save']) !!}
+            @if($model->id)
+                <input type="hidden" name="id" value="{{$model->id}}">
+            @endif
             <div>
-                {!! Form::text('title', $model->title) !!}
+                {!! Form::text('title',$model->title ?? old('title')) !!}
             </div>
 
             <div>
-                {!! Form::textarea('content', $model->content) !!}
+                {!! Form::textarea('content',$model->content ?? old('content')) !!}
             </div>
 
             <div>
@@ -22,9 +26,7 @@
                 {!! Form::select('category_id', $categories, $model->category_id) !!}
             </div>
             
-            <div>
-                {!! Form::submit('Create') !!}
-            </div>
+            {!! Form::submit("Save") !!}
         {!! Form::close() !!}
     </div>
 </body>

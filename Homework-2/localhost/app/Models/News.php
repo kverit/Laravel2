@@ -15,6 +15,13 @@ class News extends Model
         'category_id'
     ];
 
+    public static function getByCategoryId(int $categoryId)
+    {
+        return static::query()
+            ->where('category_id', $categoryId)
+            ->get();
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
