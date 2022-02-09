@@ -19,6 +19,7 @@ class Category extends Model
     {
 
         return Category::select(['id', 'category_name'])
-            ->get();
+            ->get()
+            ->pluck('name', 'id');
     }
 }

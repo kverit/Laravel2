@@ -8,9 +8,18 @@
 </head>
 <body>
     <div>
-        {!! Form::open([ 'route' => 'admin::category::create']) !!}
+        @if ($errors->any())
             <div>
-                {!! Form::text('title', '') !!}
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {!! Form::open(['route' => 'admin::category::save']) !!}
+            <div>
+                {!! Form::text('category_name', $model->category_name) ?? old('category_name') !!}
             </div>
             
             <div>

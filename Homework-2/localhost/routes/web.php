@@ -17,7 +17,7 @@ use App\Http\Admin\Controllers;
 //    return view('welcome');
 //});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
 //Route::get('/auth', [App\Http\Controllers\AuthController::class, 'show']);
 //Route::get('/category', [App\Http\Controllers\NewsCategoryController::class, 'show']);
 //Route::get('/news', [App\Http\Controllers\TargetNewsController::class, 'show']);
@@ -28,36 +28,47 @@ Route::group([
     'prefix' => '/admin/news',
     'as' => 'admin::news::'
 ], function() {
-    
-    Route::match(['get', 'post'], 'create', [App\Http\Controllers\Admin\NewsController::class, 'save'])
+
+    Route::get('/', [App\Http\Controllers\Admin\NewsController::class, 'index'])
+        ->name('index');
+
+    Route::get('create', [App\Http\Controllers\Admin\NewsController::class, 'create'])
         ->name('create');
+
+    Route::post('save', [App\Http\Controllers\Admin\NewsController::class, 'save'])
+        ->name('save');
 
     Route::get('show', [App\Http\Controllers\Admin\NewsController::class, 'show'])
         ->name('show');
 
-    Route::get('update', [NewsController::class, 'update'])
+    Route::get('update/{news}', [App\Http\Controllers\Admin\NewsController::class, 'update'])
+        ->where('news', '[0-9]+')
         ->name('update');
 
-    Route::get('delete', [NewsController::class, 'delete'])
+    Route::get('/delete/{id}', [App\Http\Controllers\Admin\NewsController::class, 'delete'])
+        ->where('id', '[0-9]+')
         ->name('delete');
 });
 
 
 
-//Route::group([
-//        'prefix' => '/admin/category',
-//        'as' => 'admin::category::'
-//    ], function() {
-//        
-//        Route::post('create', [App\Http\Controllers\CategoryController::class, 'create'])
-//            ->name('create');
-//
-//        Route::get('show', [App\Http\Controllers\CategoryController::class, 'show'])
-//          ->name('show');
-//
-//        Route::get('update', [CategoryController::class, 'update'])
-//            ->name('update');
-//
-//        Route::get('delete', [CategoryController::class, 'delete'])
-//            ->name('delete');
-//});
+Route::group([
+        'prefix' => '/admin/category',
+        'as' => 'admin::category::'
+    ], function() {
+        
+        Route::get('create', [App\Http\Controllers\Admin\NewsCategoryController::class, 'create'])
+            ->name('create');
+
+        Route::post('save', [App\Http\Controllers\Admin\NewsCategoryController::class, 'save'])
+            ->name('save');    
+
+        Route::get('/', [App\Http\Controllers\Admin\NewsCategoryController::class, 'index'])
+          ->name('index');
+
+        Route::get('update', [CategoryController::class, 'update'])
+            ->name('update');
+
+        Route::get('delete', [CategoryController::class, 'delete'])
+            ->name('delete');
+});
