@@ -75,6 +75,34 @@ Route::group([
         ->name('delete');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home');
+
+Route::group(
+    [
+        'prefix' => '/admin/user',
+        'as' => 'admin::user::',
+        'middleware' => 'role:admin'
+    ],
+    function () {
+
+        Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])
+            ->name('index');
+
+        Route::post('save', [App\Http\Controllers\Admin\UserController::class, 'save'])
+            ->name('save');
+
+        Route::get('create', [App\Http\Controllers\Admin\UserController::class, 'create'])
+            ->name('create');
+
+        Route::get('update/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])
+            ->where('user', '[0-9]+')
+            ->name('update');
+    
+        Route::get('delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'delete'])
+            ->where('id', '[0-9]+')
+            ->name('delete');
+    }
+);
