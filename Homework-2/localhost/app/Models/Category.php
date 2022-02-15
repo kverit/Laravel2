@@ -9,7 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function news() 
+    protected $table = 'categories';
+
+    protected $fillable = [
+        'category_name'
+    ];
+
+    public $timestamps = false;
+
+    public function news()
     {
 
         return $this->hasMany(News::class);

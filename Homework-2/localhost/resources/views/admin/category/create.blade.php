@@ -18,6 +18,9 @@
             </div>
         @endif
         {!! Form::open(['route' => 'admin::category::save']) !!}
+            @if($model->id)
+                <input type="hidden" name="id" value="{{$model->id}}">
+            @endif
             <div>
                 {!! Form::text('category_name', $model->category_name) ?? old('category_name') !!}
             </div>
