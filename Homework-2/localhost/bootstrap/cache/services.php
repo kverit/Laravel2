@@ -27,15 +27,20 @@
     23 => 'Fruitcake\\Cors\\CorsServiceProvider',
     24 => 'Laravel\\Sail\\SailServiceProvider',
     25 => 'Laravel\\Sanctum\\SanctumServiceProvider',
-    26 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    27 => 'Laravel\\Ui\\UiServiceProvider',
-    28 => 'Collective\\Html\\HtmlServiceProvider',
-    29 => 'Carbon\\Laravel\\ServiceProvider',
-    30 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    31 => 'App\\Providers\\AppServiceProvider',
-    32 => 'App\\Providers\\AuthServiceProvider',
-    33 => 'App\\Providers\\EventServiceProvider',
-    34 => 'App\\Providers\\RouteServiceProvider',
+    26 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    27 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    28 => 'Laravel\\Ui\\UiServiceProvider',
+    29 => 'Collective\\Html\\HtmlServiceProvider',
+    30 => 'Carbon\\Laravel\\ServiceProvider',
+    31 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    32 => 'Orchestra\\Parser\\XmlServiceProvider',
+    33 => 'SocialiteProviders\\Manager\\ServiceProvider',
+    34 => 'Orchestra\\Parser\\XmlServiceProvider',
+    35 => 'SocialiteProviders\\Manager\\ServiceProvider',
+    36 => 'App\\Providers\\AppServiceProvider',
+    37 => 'App\\Providers\\AuthServiceProvider',
+    38 => 'App\\Providers\\EventServiceProvider',
+    39 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -184,11 +189,13 @@
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
+    'Laravel\\Socialite\\Contracts\\Factory' => 'SocialiteProviders\\Manager\\ServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'html' => 'Collective\\Html\\HtmlServiceProvider',
     'form' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
+    'orchestra.parser.xml' => 'Orchestra\\Parser\\XmlServiceProvider',
   ),
   'when' => 
   array (
@@ -231,10 +238,19 @@
     'Laravel\\Sail\\SailServiceProvider' => 
     array (
     ),
+    'Laravel\\Socialite\\SocialiteServiceProvider' => 
+    array (
+    ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 
     array (
     ),
     'Collective\\Html\\HtmlServiceProvider' => 
+    array (
+    ),
+    'Orchestra\\Parser\\XmlServiceProvider' => 
+    array (
+    ),
+    'SocialiteProviders\\Manager\\ServiceProvider' => 
     array (
     ),
   ),

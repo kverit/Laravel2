@@ -100,9 +100,21 @@ Route::group(
         Route::get('update/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])
             ->where('user', '[0-9]+')
             ->name('update');
-    
+
         Route::get('delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'delete'])
             ->where('id', '[0-9]+')
             ->name('delete');
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'admin/parser',
+        'as' => 'admin::parser'
+    ],
+    function () {
+
+        Route::get('/', [\App\Http\Controllers\Admin\ParserController::class, 'index'])
+            ->name('index');
     }
 );
